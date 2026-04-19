@@ -2,11 +2,8 @@
     "routes": [
         {
             "route": "/",
-            "rewrite": "/public/index.html"
+            "redirect": "/public/index.html",
+            "statusCode": 301
         }
-    ],
-    "navigationFallback": {
-        "rewrite": "/public/index.html",
-        "exclude": ["*.json", "*.js", "*.css", "*.html", "*.png", "*.svg", "*.ico"]
-    }
+    ]
 }
