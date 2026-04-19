@@ -12,11 +12,17 @@ export function getCurrentActivity() {
 }
 
 export function getResolvedName() {
-    const name = elements.recipientNameOverride.value.trim() || 
-    getResolvedRecipientName(elements.toRecipients.value) || 
-    appConfig.settings[lang].fallbackName;
+    const override = elements.recipientNameOverride.value.trim();
+    if(override) return capitalizeFirst(override);
 
-    return capitalizeFirst(name);
+    const extracted = getResolvedRecipientName(elements.toRecipients.value);
+    const minLength = appConfig.settings.global.minNameLength || 3;
+
+    if (extracted && extracted.length >= minLength) {
+        return capitalizeFirst(extracted);
+    }
+
+    return capitalizeFirst(appConfig.settings[lang].fallbackName);
 }
 
 export function getSelectedFields() {
