@@ -1,0 +1,11 @@
+{
+    "routes": [
+        {
+            "route": "/",
+            "rewrite": "/public/index.html"
+        }
+    ],
+    "navigationFallback": {
+        "rewrite": "/public/index.html"
+    }
+}
