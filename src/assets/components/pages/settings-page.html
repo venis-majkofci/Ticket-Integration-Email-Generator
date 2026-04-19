@@ -1,0 +1,124 @@
+<section id="settings-page" class="page py-4">
+  <div class="container-fluid">
+
+    <!-- Global Settings -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Global settings</h2>
+
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="defaultCcInput" class="form-label">Default CC</label>
+            <input id="defaultCcInput" type="text" class="form-control" />
+          </div>
+          <div class="col-md-4">
+            <label for="minNameLengthInput" class="form-label">Minimum name length</label>
+            <input id="minNameLengthInput" type="number" class="form-control" min="1" />
+          </div>
+          <div class="col-md-4">
+            <label for="placeholderPatternInput" class="form-label">Placeholder pattern</label>
+            <input id="placeholderPatternInput" type="text" class="form-control font-monospace" />
+            <div class="form-text">Regex used to identify placeholders in templates.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shared Placeholder Palette -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <label class="form-label">Placeholders</label>
+        <div class="d-flex flex-wrap gap-2 mb-1" id="settingsPlaceholderPalette">
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{ticket-id}}">{{ticket-id}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{activity}}">{{activity}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{name}}">{{name}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{missing-fields}}">{{missing-fields}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{notes}}">{{notes}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{signature}}">{{signature}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{template-url}}">{{template-url}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{documentation}}">{{documentation}}</span>
+          <span class="template-tag" style="cursor:pointer" data-placeholder="{{links}}">{{links}}</span>
+        </div>
+        <div class="form-text">Click to insert into the active template field (subject or body, IT or EN).</div>
+      </div>
+    </div>
+
+    <!-- Language Settings -->
+    <div class="row g-4 mb-4">
+
+      <!-- IT -->
+      <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Italiano</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="fallbackNameInput_it" class="form-label">Fallback name</label>
+              <input id="fallbackNameInput_it" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="signatureInput_it" class="form-label">Signature</label>
+              <input id="signatureInput_it" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Subject template</label>
+              <div id="subjectTemplateInput_it" class="form-control editor-surface font-monospace" contenteditable="true" style="min-height:38px"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Body template</label>
+              <div id="bodyTemplateInput_it" class="form-control editor-surface font-monospace overflow-auto" contenteditable="true" style="min-height:180px"></div>
+            </div>
+            <div class="mb-3">
+              <label for="notesLabelInput_it" class="form-label">Notes label</label>
+              <input id="notesLabelInput_it" type="text" class="form-control" />
+              <div class="form-text">Text shown before additional notes. Leave empty for no label.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EN -->
+      <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">English</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="fallbackNameInput_en" class="form-label">Fallback name</label>
+              <input id="fallbackNameInput_en" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label for="signatureInput_en" class="form-label">Signature</label>
+              <input id="signatureInput_en" type="text" class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Subject template</label>
+              <div id="subjectTemplateInput_en" class="form-control editor-surface font-monospace" contenteditable="true" style="min-height:38px"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Body template</label>
+              <div id="bodyTemplateInput_en" class="form-control editor-surface font-monospace overflow-auto" contenteditable="true" style="min-height:180px"></div>
+            </div>
+            <div class="mb-3">
+              <label for="notesLabelInput_en" class="form-label">Notes label</label>
+              <input id="notesLabelInput_en" type="text" class="form-control" />
+              <div class="form-text">Text shown before additional notes. Leave empty for no label.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body d-flex gap-2">
+        <button class="btn btn-primary" id="saveConfigBtn">Save configuration</button>
+        <button class="btn btn-outline-danger" id="resetConfigBtn">Restore defaults</button>
+        <div id="configStatus" class="d-flex align-items-center ms-3"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,142 @@
+<section id="home-page" class="page active py-4">
+  <div class="container-fluid">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <h2 class="card-title mb-4">Request data</h2>
+          </div>
+          <div class="col-md-6 text-end">
+            <div class="nav-item ms-3">
+              <select id="langSelect" class="lang-select">
+                <option value="it" default>IT</option>
+                <option value="en">EN</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="ticketId" class="form-label">Ticket number</label>
+            <input id="ticketId" type="text" class="form-control" placeholder="e.g. CHG123456" value="" />
+          </div>
+          <div class="col-md-6">
+            <label for="recipientNameOverride" class="form-label">Recipient name</label>
+            <input id="recipientNameOverride" type="text" class="form-control" placeholder="Leave empty to use the name extracted automatically" />
+            <div class="form-text">If provided, this name takes priority.</div>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label for="toRecipients" class="form-label">Recipients (To)</label>
+            <input id="toRecipients" type="text" class="form-control" placeholder="first.last@company.com; other.user@company.com" />
+          </div>
+          
+          <div class="col-md-6">
+            <label for="ccRecipients" class="form-label">CC</label>
+            <input id="ccRecipients" type="text" class="form-control" placeholder="cc1@company.com; cc2@company.com" />
+          </div>
+          <div class="form-text">Multiple addresses separated by semicolons (;).</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="activityType" class="form-label">Activity type</label>
+          <select id="activityType" class="form-select"></select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Missing fields</label>
+          <div class="d-flex flex-wrap gap-2" id="missingFields"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="notes" class="form-label">Additional notes</label>
+          <textarea id="notes" class="form-control" rows="3" placeholder="You can also use placeholders here, e.g.: Contact {{name}} once data is available for ticket {{ticket-id}}."></textarea>
+          <div class="form-text">Placeholders also work in additional notes.</div>
+        </div>
+
+        <!-- Tab navigation -->
+        <ul class="nav nav-tabs mb-3" id="editorTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link editor-tab-btn active" id="preview-tab" data-panel="preview-panel" type="button" role="tab">Preview</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link editor-tab-btn" id="edit-tab" data-panel="edit-panel" type="button" role="tab">Edit</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="editorTabContent">
+
+          <!-- Preview -->
+          <div class="tab-pane fade show active" id="preview-panel" role="tabpanel">
+            <div class="d-flex flex-column gap-2">
+              <div class="row align-items-start g-2">
+                <label class="col-auto col-form-label fw-semibold" style="min-width:70px">To</label>
+                <div class="col"><div id="toPreview" class="form-control bg-light min-vh-0" style="min-height:38px"></div></div>
+              </div>
+              <div class="row align-items-start g-2">
+                <label class="col-auto col-form-label fw-semibold" style="min-width:70px">CC</label>
+                <div class="col"><div id="ccPreview" class="form-control bg-light" style="min-height:38px"></div></div>
+              </div>
+              <div class="row align-items-start g-2">
+                <label class="col-auto col-form-label fw-semibold" style="min-width:70px">Subject</label>
+                <div class="col"><div id="subjectPreview" class="form-control bg-light" style="min-height:38px"></div></div>
+              </div>
+              <div class="row align-items-start g-2">
+                <label class="col-auto col-form-label fw-semibold" style="min-width:70px">Body</label>
+                <div class="col"><div id="bodyPreview" class="form-control bg-light overflow-auto" style="min-height:120px"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Edit -->
+          <div class="tab-pane fade" id="edit-panel" role="tabpanel">
+            <div class="mb-3">
+              <label class="form-label">Placeholders</label>
+              <div class="d-flex flex-wrap gap-2 mb-1" id="placeholderPalette">
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{ticket-id}}">{{ticket-id}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{activity}}">{{activity}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{name}}">{{name}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{missing-fields}}">{{missing-fields}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{notes}}">{{notes}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{signature}}">{{signature}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{template-url}}">{{template-url}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{documentation}}">{{documentation}}</span>
+                <span class="template-tag" style="cursor:pointer" data-placeholder="{{links}}">{{links}}</span>
+              </div>
+              <div class="form-text">Single click to insert a placeholder. Double click on a placeholder already in the subject or body to expand it to its current value.</div>
+            </div>
+
+            <!-- Subject -->
+            <div class="mb-3">
+              <label class="form-label">Editable subject</label>
+              <div id="subjectEditor" class="form-control editor-surface" contenteditable="true" style="min-height:38px"></div>
+            </div>
+
+            <!-- Body -->
+            <div class="mb-3">
+              <label class="form-label">Editable email body</label>
+              <div id="bodyEditor" class="form-control overflow-auto editor-surface" contenteditable="true" style="min-height:150px"></div>
+              <div class="form-text mt-1">The double click expansion works on placeholders within the editor text, not on the palette above.</div>
+            </div>
+
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="card shadow-sm mt-3">
+      <div class="card-body d-flex gap-2">
+        <button class="btn btn-primary" id="openMailBtn">Open email</button>
+        <button class="btn btn-secondary" id="generateBtn">Regenerate</button>
+        <button class="btn btn-secondary" id="resetBtn">Reset email</button>
+      </div>
+    </div>
+  </div>
+</section>

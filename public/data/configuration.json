@@ -1,0 +1,89 @@
+{
+	"settings": {
+		"global": {
+			"defaultCc": "am.k8s@eni.com",
+			"minNameLength": 3,
+			"placeholderPattern": "\\{\\{(ticket-id|activity|name|missing-fields|notes|signature|template-url|documentation|links)\\}\\}"
+		},
+		"it": {
+			"fallbackName": "collega",
+			"email":{
+				"subject": "[{{ticket-id}}] Richiesta integrazione dati",
+				"body": "Ciao {{name}},\n\nper poter procedere con il ticket in oggetto, è necessario integrare i seguenti dati:\n{{missing-fields}}{{links}}{{notes}}\n\nAppena disponibili, procederemo con la lavorazione.\n\n{{signature}}",
+				"notes": "",
+				"signature": "Cordiali saluti",
+				"links": {
+					"message": "Per maggiori informazioni",
+					"labels": {
+						"documentation": "Documentazione",
+						"template": "Ticket template"
+					}
+				}
+			}
+		},
+		"en": {
+			"fallbackName": "colleague",
+			"email":{
+				"subject": "[{{ticket-id}}] Data completion request",
+				"body": "Hi {{name}},\n\nin order to proceed with the above-mentioned ticket, the following information is required:\n{{missing-fields}}{{links}}{{notes}}\n\nOnce available, we will proceed with the processing.\n\n{{signature}}",
+				"notes": "",
+				"signature": "Best regards",
+				"links": {
+					"message": "For more information",
+					"labels": {
+						"documentation": "Documentation",
+						"template": "Ticket template"
+					}
+				}
+			}
+		}
+	},
+	"activities": [
+		{
+			"id": "firewall",
+			"templateUrl": "",
+			"documentation": "",
+			"label": {
+				"it": "Firewall IT",
+				"en": "Firewall EN"
+			},
+			"fields": [
+				{
+					"key": "sourceIp",
+					"label": {
+						"it": "IP sorgente",
+						"en": "Source IP"
+					},
+					"checked": true
+				},
+				{
+					"key": "sourceIp2",
+					"label": {
+						"it": "IP sorgente2",
+						"en": "Source IP2"
+					},
+					"checked": true
+				}
+			]
+		},
+		{
+			"id": "firewall2",
+			"templateUrl": "https://doc.exm/firewall-template2",
+			"documentation": "https://doc.exm/firewall2",
+			"label": {
+				"it": "Firewall2",
+				"en": "Firewall2"
+			},
+			"fields": [
+				{
+					"key": "sourceIp",
+					"label": {
+						"it": "IP sorgente",
+						"en": "Source IP"
+					},
+					"checked": false
+				}
+			]
+		}
+	]
+}
