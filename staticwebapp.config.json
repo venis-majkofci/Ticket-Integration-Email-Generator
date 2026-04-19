@@ -6,6 +6,7 @@
         }
     ],
     "navigationFallback": {
-        "rewrite": "/public/index.html"
+        "rewrite": "/public/index.html",
+        "exclude": ["*.json", "*.js", "*.css", "*.html", "*.png", "*.svg", "*.ico"]
     }
 }
